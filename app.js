@@ -1,5 +1,6 @@
 // Importing modules 
 const express = require('express');
+const db = require('./config/connection'); 
 const authRoutes = require('./routes/auth');
 
 // Initializing an express app
