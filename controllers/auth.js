@@ -8,14 +8,14 @@ const logout = async (req, res) => {
     res.send('logout');
 };
 
-// OAuth Google
-const oauth_google = async (req, res) => {
-    res.send('Google Login');
+// Redirect
+const redirect = async (req, res) => {
+    res.send('redirect');
 };
 
 // Exporting modules
 module.exports = {
     login,
     logout,
-    oauth_google
+    redirect
 };
