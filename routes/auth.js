@@ -17,7 +17,7 @@ router.get('/logout', logout);
 router.get('/google', passport.authenticate('google', {
     scope: ['profile']
 }));
-router.get('/google/redirect', redirect);
+router.get('/google/redirect', passport.authenticate('google'), redirect);
 
 // Exporting modules
 module.exports = router;
