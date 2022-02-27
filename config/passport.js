@@ -23,7 +23,6 @@ passport.use(
         // passport callback funtion
         const currentUser = await User.findOne({ googleId: profile.id });
         if (currentUser) {
-            console.log(`currentUser: ${currentUser}`);
             done(null, currentUser);
         } else {
             const newUser = new User({
@@ -31,7 +30,6 @@ passport.use(
                 googleId: profile.id
             });
             await newUser.save();
-            console.log(`newUser: ${newUser}`);
             done(null, newUser);
         }
     })
