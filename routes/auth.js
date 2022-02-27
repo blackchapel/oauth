@@ -7,11 +7,12 @@ const passportSetup = require('../config/passport');
 const router = require('express').Router();
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', { user: req.user });
 });
 
 router.get('/logout', (req, res) => {
-    res.send('logout');
+    req.logOut();
+    res.redirect('/');
 });
 
 router.get('/google', passport.authenticate('google', {

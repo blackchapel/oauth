@@ -25,7 +25,7 @@ app.use(passport.session());
 
 // // Routes
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', { user: req.user });
 });
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
