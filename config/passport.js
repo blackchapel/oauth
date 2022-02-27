@@ -12,11 +12,16 @@ passport.use(
         clientSecret: process.env.CLIENT_SECRET
     }, async (accessToken, refreshToken, profile, done) => {
         // passport callback funtion
-        const newUser = new User({
-            username: profile.displayName,
-            googleId: profile.id
-        });
-        await newUser.save();
-        console.log(newUser);
+        const currentUser = await User.findOne({ googleId: profile.id });
+        if (currentUser) {
+            console.log(`currentUser: ${currentUser}`);
+        } else {
+            const newUser = new User({
+                username: profile.displayName,
+                googleId: profile.id
+            });
+            await newUser.save();
+            console.log(`newUser: ${newUser}`);
+        }
     })
 );
