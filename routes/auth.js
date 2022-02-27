@@ -2,22 +2,26 @@
 const express = require('express');
 const passport = require('passport');
 const passportSetup = require('../config/passport');  
-const {
-    login, 
-    logout,
-    redirect
-} = require('../controllers/auth');
 
 // Initializing router
 const router = require('express').Router();
 
-// Routes
-router.get('/login', login);
-router.get('/logout', logout);
+router.get('/login', (req, res) => {
+    res.render('login');
+});
+
+router.get('/logout', (req, res) => {
+    res.send('logout');
+});
+
 router.get('/google', passport.authenticate('google', {
     scope: ['profile']
 }));
-router.get('/google/redirect', passport.authenticate('google'), redirect);
+
+router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
+    // res.send(req.user);
+    res.redirect('/user/profile/');
+});
 
 // Exporting modules
 module.exports = router;

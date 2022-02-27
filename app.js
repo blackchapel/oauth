@@ -2,6 +2,7 @@
 const express = require('express');
 const db = require('./config/connection'); 
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 const cookieSession = require('cookie-session');
 const dotenv = require('dotenv').config();
 const passport = require('passport');
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 // Listening on port 3000
 app.listen(3000, () => {
