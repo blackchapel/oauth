@@ -10,7 +10,7 @@ const logout = async (req, res) => {
 
 // Redirect
 const redirect = async (req, res) => {
-    res.send('redirect');
+    res.send(req.user);
 };
 
 // Exporting modules
