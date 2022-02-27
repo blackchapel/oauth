@@ -2,12 +2,25 @@
 const express = require('express');
 const db = require('./config/connection'); 
 const authRoutes = require('./routes/auth');
+const cookieSession = require('cookie-session');
+const dotenv = require('dotenv').config();
+const passport = require('passport');
 
 // Initializing an express app
 const app = express();
 
 // Set up view engine
 app.set('view engine', 'ejs');
+
+// Set up cookies
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_KEY]
+}));
+
+// Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // // Routes
 app.get('/', (req, res) => {
